@@ -21,6 +21,7 @@ git clone https://github.com/theckang/openshift-kafka-demo.git
 Run locally
 
 ```bash
+cd app/
 pip install -r requirements.txt
 export FLASK_APP=app.py
 flask run
