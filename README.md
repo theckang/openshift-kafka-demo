@@ -18,10 +18,6 @@ Clone the repo
 git clone https://github.com/theckang/openshift-kafka-demo.git
 ```
 
-```bash
-tar -xzf kafka_2.13-2.6.0.tgz
-```
-
 Install AMQ Streams via OperatorHub.  After installing, verify that it succeeded:
 
 ```bash
@@ -101,6 +97,10 @@ curl -H "Content-type: application/xml" -X POST $DEMO_URL -d '<xml><message>This
 ### Alternative consumer (fully remote)
 
 Download the latest releaseo of [Kafka](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.6.0/kafka_2.13-2.6.0.tgz)
+
+```bash
+tar -xzf kafka_2.13-2.6.0.tgz
+```
 
 Extract certificates and place them in your chain of trust
 > Note: The OpenShift external route to the bootstrap server requires TLS.
