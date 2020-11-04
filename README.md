@@ -82,7 +82,7 @@ Run the app
 
 ```bash
 oc new-app python:3.6~https://github.com/theckang/openshift-kafka-demo --name kafka-demo --context-dir=app \
---env KAFKA_HOST=my-cluster-kafka-bootstrap --env KAFKA_TOPIC=my-topic
+--env KAFKA_HOST=my-cluster-kafka-bootstrap:9092 --env KAFKA_TOPIC=my-topic
 ```
 
 Send sample request
@@ -92,4 +92,3 @@ oc expose svc kafka-demo
 DEMO_URL=$(oc get route kafka-demo --template='{{.spec.host}}/data')
 curl -H "Content-type: application/xml" -X POST $DEMO_URL -d '<xml><message>This is a test</message></xml>'
 ```
-
