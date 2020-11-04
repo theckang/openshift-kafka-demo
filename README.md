@@ -17,3 +17,18 @@ Clone the repo
 ```bash
 git clone https://github.com/theckang/openshift-kafka-demo.git
 ```
+
+Run locally
+
+```bash
+pip install -r requirements.txt
+export FLASK_APP=app.py
+flask run
+```
+
+Send sample request
+
+```bash
+curl -H "Content-type: application/xml" -X POST http://localhost:5000/data -d '<xml><message>This is a test</message></xml>'
+```
+
