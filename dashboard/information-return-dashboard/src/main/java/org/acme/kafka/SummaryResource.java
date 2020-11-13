@@ -40,6 +40,6 @@ public class SummaryResource {
     @Path("/latest")
     @Produces("text/plain")
     public String latest() {
-        return summaryService.getSummary().toString();
+        return summaryService.getSummary(Year.now().toString()).toString();
     }
 }
