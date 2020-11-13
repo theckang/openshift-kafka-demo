@@ -20,5 +20,4 @@ public class Summarizer {
     public String process(String summary) {
         return summary;
     }
-
 }
