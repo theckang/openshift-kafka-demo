@@ -15,4 +15,7 @@ http://localhost:8080/index.html
 
 # OpenShift
 
-mvn clean package -Dquarkus.kubernetes.deploy=true -Dquarkus.openshift.env-vars.kafka-bootstrap-server.value=my-cluster-kafka-bootstrap:9092 -Dquarkus.openshift.env-vars.summary-service-url.value=http://information-return-summary-aggregator-summary.apps.cluster-5cd4.5cd4.example.opentlc.com/information-return
+mvn clean package \
+-Dquarkus.kubernetes.deploy=true \
+-Dquarkus.openshift.env-vars.kafka-bootstrap-server.value=my-cluster-kafka-bootstrap:9092 \
+-Dquarkus.openshift.env-vars.summary-service-url.value=http://information-return-summary-aggregator-summary.apps.mycluster.com/information-return
