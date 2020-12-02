@@ -16,6 +16,20 @@ KAFKA_INTAKE_TOPIC=information-return-intake --env KAFKA_SUBMITTED_TOPIC=informa
 --env MONGODB_PASSWORD=password
 ```
 
+Start consumers on OpenShift
+
+```bash
+oc run kafka-consumer-events -ti --image=registry.redhat.io/amq7/amq-streams-kafka-25-rhel7:1.5.0 --rm=true \
+--restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 \
+ --property print.key=true --property key.separator="-" --topic information-return-events --from-beginning
+```
+
+```bash
+oc run kafka-consumer-submitted -ti --image=registry.redhat.io/amq7/amq-streams-kafka-25-rhel7:1.5.0 --rm=true \
+--restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 \
+ --property print.key=true --property key.separator="-" --topic information-return-submitted --from-beginning
+```
+
 Query MongoDB:
 
 ```bash
