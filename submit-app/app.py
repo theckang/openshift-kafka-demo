@@ -9,9 +9,9 @@ consumer = KafkaConsumer(intake_topic, bootstrap_servers=os.getenv("KAFKA_HOST")
 producer = KafkaProducer(bootstrap_servers=os.getenv("KAFKA_HOST"))
 
 for msg in consumer:
-    print(msg)
 
     # store message in MongoDB
-    # producer.send(submitted_topic, message)       # Asynchronous, order not guaranteed
-    # producer.send(events_topic, message)
+
+    producer.send(submitted_topic, msg.value)       # Asynchronous, order not guaranteed
+    producer.send(events_topic, msg.value)
 

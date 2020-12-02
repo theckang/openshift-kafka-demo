@@ -3,7 +3,7 @@
 Run the app on OpenShift
 
 ```bash
-oc new-app python:3.6~https://github.com/theckang/openshift-kafka-demo --name kafka-demo --context-dir=intake-app \
+oc new-app python:3.6~https://github.com/theckang/openshift-kafka-demo --name intake-app --context-dir=intake-app \
 --env KAFKA_HOST=my-cluster-kafka-bootstrap:9092 --env KAFKA_INTAKE_TOPIC=information-return-intake
 ```
 
@@ -16,8 +16,8 @@ oc run kafka-consumer -ti --image=registry.redhat.io/amq7/amq-streams-kafka-25-r
 Send sample requests
 
 ```bash
-oc expose svc kafka-demo
-DEMO_URL=$(oc get route kafka-demo --template='{{.spec.host}}/data')
+oc expose svc intake-app
+DEMO_URL=$(oc get route intake-app --template='{{.spec.host}}/data')
 curl -H "Content-type: application/xml" -X POST $DEMO_URL -d '<xml><message>This is a test</message></xml>'
 ```
 
