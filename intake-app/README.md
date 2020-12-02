@@ -12,7 +12,7 @@ Start consumer on OpenShift
 ```bash
 oc run kafka-consumer -ti --image=registry.redhat.io/amq7/amq-streams-kafka-25-rhel7:1.5.0 --rm=true \
 --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 \
---topic information-return-intake --from-beginning
+ --property print.key=true --property key.separator="-" --topic information-return-intake --from-beginning
 ```
 
 Send sample requests
