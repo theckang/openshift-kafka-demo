@@ -9,7 +9,7 @@ events_topic = os.getenv("KAFKA_EVENTS_TOPIC")
 consumer = KafkaConsumer(intake_topic, bootstrap_servers=os.getenv("KAFKA_HOST"))
 producer = KafkaProducer(bootstrap_servers=os.getenv("KAFKA_HOST"))
 
-mongo_client = MongoClient(host=os.getenv("MONGODB_HOST"), username=os.getenv("MONGODB_USER"), password=os.getenv("MONGODB_PASSWORD"))
+mongo_client = MongoClient(host=os.getenv("MONGODB_HOST"), username=os.getenv("MONGODB_USER"), password=os.getenv("MONGODB_PASSWORD"), authSource='testdb')
 db = mongo_client.testdb
 
 for msg in consumer:

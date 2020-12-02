@@ -12,8 +12,8 @@ Run the app on OpenShift
 oc new-app python:3.6~https://github.com/theckang/openshift-kafka-demo --name submit-app \
 --context-dir=submit-app --env KAFKA_HOST=my-cluster-kafka-bootstrap:9092 --env \
 KAFKA_INTAKE_TOPIC=information-return-intake --env KAFKA_SUBMITTED_TOPIC=information-return-submitted \
---env KAFKA_EVENTS_TOPIC=information-return-events --env MONGO_HOST=mongodb --env MONGO_USER=user \
---MONGO_PASSWORD=password
+--env KAFKA_EVENTS_TOPIC=information-return-events --env MONGODB_HOST=mongodb --env MONGODB_USER=user \
+--env MONGODB_PASSWORD=password
 ```
 
 Query MongoDB:
