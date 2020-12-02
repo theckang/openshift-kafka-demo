@@ -22,6 +22,6 @@ def push_data():
         except (ExpatError):
             abort(400)
 
-        producer.send(intake_topic, key = uuid.uuid4(), value=doc)       # Asynchronous, order not guaranteed
+        producer.send(intake_topic, key = uuid.uuid4().bytes, value=request.data)       # Asynchronous, order not guaranteed
 
-        return "XML received: " + doc
+        return "XML received: " + request.data.decode('UTF-8')
