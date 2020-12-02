@@ -10,7 +10,9 @@ oc new-app python:3.6~https://github.com/theckang/openshift-kafka-demo --name in
 Start consumer on OpenShift
 
 ```bash
-oc run kafka-consumer -ti --image=registry.redhat.io/amq7/amq-streams-kafka-25-rhel7:1.5.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic information-return-intake --from-beginning
+oc run kafka-consumer -ti --image=registry.redhat.io/amq7/amq-streams-kafka-25-rhel7:1.5.0 --rm=true \
+--restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 \
+--topic information-return-intake --from-beginning
 ```
 
 Send sample requests
@@ -42,5 +44,7 @@ Start local consumer
 
 ```bash
 BOOTSTRAP_SERVER_URL=$(oc get routes my-cluster-kafka-bootstrap -o=jsonpath='{.status.ingress[0].host}{"\n"}'):443
-./kafka_2.13-2.6.0/bin/kafka-console-consumer.sh --bootstrap-server $BOOTSTRAP_SERVER_URL --consumer-property security.protocol=SSL --consumer-property ssl.truststore.password=password --consumer-property ssl.truststore.location=./truststore.jks --topic information-return-intake
+./kafka_2.13-2.6.0/bin/kafka-console-consumer.sh --bootstrap-server $BOOTSTRAP_SERVER_URL \
+--consumer-property security.protocol=SSL --consumer-property ssl.truststore.password=password \
+--consumer-property ssl.truststore.location=./truststore.jks --topic information-return-intake
 ```
