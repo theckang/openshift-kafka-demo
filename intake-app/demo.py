@@ -6,8 +6,9 @@ from kafka import KafkaProducer
 
 application = Flask(__name__)
 
+# producer = KafkaProducer(compression_type='gzip')
 producer = KafkaProducer(bootstrap_servers=os.getenv("KAFKA_HOST"))
-topic = os.getenv("KAFKA_TOPIC")
+intake_topic = os.getenv("KAFKA_INTAKE_TOPIC")
 
 @application.route('/data', methods=['POST'])
 def push_data():
@@ -23,6 +24,6 @@ def push_data():
         except (KeyError, ExpatError):
             abort(400)
 
-        producer.send(topic, message.encode('UTF-8'))       # Asynchronous, order not guaranteed
+        producer.send(intake_topic, message.encode('UTF-8'))       # Asynchronous, order not guaranteed
 
         return "Message received: " + doc['xml']['message']
