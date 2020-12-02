@@ -14,11 +14,16 @@ db = mongo_client.testdb
 
 for msg in consumer:
 
+    print(msg)
+
+    key = msg.key
     message = msg.value
+
     information_return = {
-        'message': message
+        'id': key,
+        'return': message
     }
     db.information_returns.insert_one(information_return)
 
-    producer.send(submitted_topic, message)       # Asynchronous, order not guaranteed
-    producer.send(events_topic, message)
+    producer.send(submitted_topic, key=key, value=message)       # Asynchronous, order not guaranteed
+    producer.send(events_topic, key=key, value=message)
